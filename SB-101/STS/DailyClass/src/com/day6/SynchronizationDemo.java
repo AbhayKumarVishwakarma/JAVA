@@ -28,9 +28,9 @@ class B implements Runnable{
 		synchronized (a) {
 			a.printMessage(msg);
 		}
-		synchronized (A.class) {
-			a.printMessage(msg);
-		}
+//		synchronized (A.class) {
+//			a.printMessage(msg);
+//		}
 	}
 	
 }
@@ -64,3 +64,36 @@ public class SynchronizationDemo {
 		System.out.println("Bye Bye Main");
 	}
 }
+
+/*
+Output
+[Welcome]
+[Java]
+[Hello]
+Bye Bye main
+
+Now make following changes in the example
+
+A a1 = new A();
+A a2 = new A();
+B b1 = new B(a1, "Welcome");
+B b2 = new B(a2, "Hello");
+B b3 = new B(a1, "Java");
+
+Output
+[[HelloWelcome]
+]
+[Java]
+Bye Bye main
+
+Now just make following changes
+synchronized (A.class) {
+	a.printMessage(msg);			
+}
+
+Output
+[Welcome]
+[Java]
+[Hello]
+Bye Bye main  
+*/
