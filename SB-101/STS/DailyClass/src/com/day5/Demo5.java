@@ -10,7 +10,7 @@ public class Demo5 extends Thread {
     	 System.out.println("End of run method ");
      }
      public static void main(String[] args) {
-		Demo5 d = new Demo5();
+		Demo5 d = new Demo5();  // it initially using runnable interface so we not need to create runnable object
 		d.start();
 		int i=31;
    	    while(i<60) {

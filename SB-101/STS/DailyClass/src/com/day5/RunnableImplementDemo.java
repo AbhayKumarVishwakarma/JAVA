@@ -15,7 +15,7 @@ class RunDemo implements Runnable{//step-1
 
 public class RunnableImplementDemo {
      public static void main(String[] args) {
-    	//Create object of class that implements Runnable interface
+    	//step-3 Create object of class that implements Runnable interface
  		Runnable r = new RunDemo();	//step-3
  		Thread t1 = new Thread(r, "Thread-C1");	//step-4	New thread is created but it is not in execution so its state is NEW
  		System.out.println(t1.getState());	// uncomment to see state of Thread

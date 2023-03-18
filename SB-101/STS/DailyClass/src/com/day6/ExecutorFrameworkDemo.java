@@ -12,7 +12,9 @@ public class ExecutorFrameworkDemo {
 			System.out.println("Beginning : " + threadName);
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) { }
+			} catch (InterruptedException e) {
+				
+			}
 				System.out.println("1");
 				System.out.println("Completed : " + threadName);
 				System.out.println();

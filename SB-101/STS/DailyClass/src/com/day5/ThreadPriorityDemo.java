@@ -1,8 +1,7 @@
 package com.day5;
 
-
 public class ThreadPriorityDemo extends Thread {
-	volatile static boolean runMe = true;
+	volatile static boolean runMe = true; 
 	int counter = 0;
 
 	public void run(){
@@ -20,7 +19,7 @@ public class ThreadPriorityDemo extends Thread {
 	   	a1.start();
 	   	a2.start();
 	   	try{
-	   		Thread.sleep(1000);
+	   		Thread.sleep(2000);
 	   		runMe = false;
 	   		a1.join();
 	   		a2.join();

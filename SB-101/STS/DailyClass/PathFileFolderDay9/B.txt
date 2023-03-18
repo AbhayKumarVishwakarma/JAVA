@@ -1,0 +1,5 @@
+Ertiga 7 1200000 Toyota
+Eon 5 475000 Hyundai
+Creta 5 1450000 Hyundai
+Alto 5 499000 Maruti
+Fortuner 7 3450000 Toyota

@@ -31,5 +31,6 @@ public class YieldDemo {
 		} catch (InterruptedException e) {
 			// TODO: handle exception
 		}
+		System.out.println("Bye Bye main");
 	}
 }
