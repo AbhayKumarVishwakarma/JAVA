@@ -1,9 +1,12 @@
-package com.masai;
+package com.masai.model;
+
+import jakarta.validation.constraints.Size;
 
 public class Student2 {
     private int roll;
     private String name;
     private String address;
+    @Size(min = 0, max = 1000, message = "marks should be 0 to 1000!")
     private Integer marks;
 
     public Student2(int roll, String name, String address, Integer marks) {

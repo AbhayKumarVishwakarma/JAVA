@@ -14,6 +14,9 @@ public class Student {
     private String address;
     private Integer marks;
 
+    public Student() {
+    }
+
     public Student(int roll, String name, String address, Integer marks) {
         this.roll = roll;
         this.name = name;

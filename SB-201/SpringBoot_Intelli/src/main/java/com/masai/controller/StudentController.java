@@ -1,6 +1,8 @@
-package com.masai;
+package com.masai.controller;
 
+import com.masai.model.Student2;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,7 @@ public class StudentController {
         return res;
     }
     @PostMapping(value = "/newStudent2Add")
-    public ResponseEntity<String> addStudent2Handler(@RequestBody Student2 student2){
+    public ResponseEntity<String> addStudent2Handler(@Valid @RequestBody Student2 student2){
         map.put(student2.getRoll(), student2);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("MyNewHeader", "new header created...");
@@ -73,4 +75,11 @@ public class StudentController {
         }else
             throw new IllegalArgumentException("Student does not exist with Roll : " + roll);
 	}
+
+    @RequestMapping(value = "/hi/{num}", method = RequestMethod.GET)
+    public String sayHello(@PathVariable Integer num) {
+        if(num > 100) throw new IllegalArgumentException("Number should be less than 100");
+        int x = 1000/num;
+        return "Welcome to Spring Boot...";
+    }
 }
