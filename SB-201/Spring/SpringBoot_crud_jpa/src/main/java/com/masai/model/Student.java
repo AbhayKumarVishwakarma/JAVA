@@ -13,6 +13,10 @@ public class Student {
     private String name;
     private String address;
     private Integer marks;
+    
+    public Student() {
+		// TODO Auto-generated constructor stub
+	}
 
     public Student(int roll, String name, String address, Integer marks) {
         this.roll = roll;
