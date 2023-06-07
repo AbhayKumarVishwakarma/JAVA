@@ -1,0 +1,132 @@
+1. Deployment of Spring Boot application on Cloud (Railway) with Spring Security(JWT) and Swagger.
+
+2. Some special topics and refinement of ORM in Spring Boot application
+
+
+
+https://github.com/ratankumargithub/railsecurity.git
+
+
+Paging And Sorting concept in Spring Data JPA:
+=======================================
+
+
+
+--to support the paging and sorting concept inside the SpringData JPA, there is an
+interface by name "PagingAndSortingRepository" just like JpaRepository.
+
+
+--prior to Spring Data JPA 3.0 the PagingAndSortingRepository was the parent interface 
+of JpaRespository. but after Spring Data JPA 3.0, we need to extends this 
+PagingAndSortingRepository explicitly.
+
+
+prior to Spring Data JPA 3.0
+
+CrudRepository
+      |
+PagingAndSortingRepository
+      |
+JpaRepository
+
+
+after  Spring Data JPA 3.x
+
+CrudRepository
+      |
+ListCrudRepository
+      |
+JpaRepository
+
+and PagingAndSortingRepository is seperated from the above hirarchy.
+
+
+
+
+
+Sorting :
+----------
+
+--instead of loading unsorted data from the db and sorting them inside our Java application,
+we should always fetch the sorted data from the db.
+
+--there are 2 types of sorting mechanism in Spring Data JPA.
+
+1. static sorting
+2. dynamic sorting
+
+1. static sorting: in this we can get the sorted data by defining some of the method
+inside our repository interface by following a particular convension.
+
+
+
+List<Student>  findByOrderByNameDesc();
+
+List<Student>  findByOrderByMarks();
+
+
+dynamic sorting:
+--------------------
+
+--we can sepecify the field by using which we want to sort our data and 
+the direction at runtime.
+
+--for that we need to use a class i.e "Sort".
+
+--this class having some static methods by using which we can specify the field and direction dynamically.
+
+Sort s=  Sort.by("address").descending().and(Sort.by("marks").ascending()) 
+
+-we need to pass this Sort object inside the findAll() method of 
+PagingAndSortingRepository interface.
+
+
+
+Pagination:
+=========
+
+--Spring Data JPA supports the pagination which helps to manage and display large amount of data in various pages and number or records inside our application.
+
+--with this we can specify the limit of our record with per page.
+
+--just like we use the "Sort" parameter inside the findAll(-) method. we can pass the 
+Pageable(I) object  to the findAll() method to make use of Pagination,
+
+ex:
+
+Page<T> findAll(Pageable pageable);
+
+
+--to call this findAll method we need to pass the Pageable object.
+
+Pageable p = PageRequest.of(0, 5 ,Sort) ;    // 100 records so total 20 pages will be there 
+
+Page<Student> page=  findAll(p);
+
+List<Student> students=  page.getContent();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
