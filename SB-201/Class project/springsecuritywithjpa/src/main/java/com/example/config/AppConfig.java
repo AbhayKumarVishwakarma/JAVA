@@ -13,9 +13,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class AppConfig {
 
+    /**
+     *
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth ->{
+        http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.POST, "/customers").permitAll()
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .anyRequest().authenticated();

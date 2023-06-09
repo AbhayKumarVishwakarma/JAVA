@@ -24,13 +24,21 @@ public class CustomerController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // anyone can access
+    /**
+     * anyone can access
+     * @return a welcome message
+     */
     @GetMapping("/hello")
     public String testHandler() {
         return "Welcome to Spring Security";
     }
 
-    // anyone can access
+
+    /**
+     * anyone can access and register himself
+     * @param customer
+     * @return ResponseEntity with customer
+     */
     @PostMapping("/customers")
     public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
@@ -38,7 +46,12 @@ public class CustomerController {
         return new ResponseEntity<>(registeredCustomer,HttpStatus.ACCEPTED);
     }
 
-    // access by login user
+
+    /**
+     * access by login user and he/she can search customer by email
+     * @param email
+     * @return ResponseEntity with customer
+     */
     @GetMapping("/customers/{email}")
     public ResponseEntity<Customer> getCustomerByEmailHandler(@PathVariable("email") String email){
         Customer customer = customerService.getCustomerDetailsByEmail(email);
@@ -46,13 +59,23 @@ public class CustomerController {
     }
 
     // access by login user
+
+    /**
+     * access by login user and he/she can see all customers
+     * @return ResponseEntity with list of customers
+     */
     @GetMapping("/customers")
     public ResponseEntity<List<Customer>> getAllCustomerHandler(){
         List<Customer> customers = customerService.getAllCustomerDetails();
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-    // signIn with register user
+
+    /**
+     * only register user can access and signIn
+     * @param auth
+     * @return ResponseEntity with message
+     */
     @GetMapping("/signIn")
     public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
         System.out.println(auth); // this Authentication object having Principle object details
