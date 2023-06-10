@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Add Employee</title>
+    <style>
+         *{
+            padding: auto;
+            margin: 0px;
+            box-sizing: border-box;
+            line-height: 110%;
+        }
+        #home{
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            color: black;
+        }
+        #main-container{
+            
+            margin: auto;
+            margin-top: 9%;
+            width: 60%;
+            border: 2px salmon dotted;
+            padding: 20px;
+        }
+        #title{
+            text-align: center;
+            font-size: larger;
+            margin-bottom: 10px;
+        }
+        #form{
+            border: 1px dashed black ;
+            padding: 10px;
+            padding-bottom: 20px;
+            width: 70%;
+            margin: auto;
+        }
+        #form label{
+            font-size: 23px;
+            font-weight: 500;
+            padding: 15px;
+            /* margin-top: 20px; */
+        }
+        #form input{
+            padding: 6px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id = "home">
+        <a href="../index.html"><span class="material-symbols-outlined">
+            home
+            </span></a>
+    </div>
+
+    <div id="main-container">
+        <div id="title"><h1>Update Employee</h1></div>
+        
+        <div id="form">
+            <form action="">
+                <div>
+                    <label for="">Employee ID : &nbsp;</label>
+                    <input type="number" name="" id="id" placeholder="Employee ID" required>
+                </div>
+                <div>
+                    <label for="">First Name : &emsp;</label>
+                    <input type="text" name="" id="firstname" placeholder="First Name" required>
+                </div>
+                <div>
+                    <label for="">Last Name : &emsp;</label>
+                    <input type="text" name="" id="lastname" placeholder="Last Name">
+                </div>
+                <div>
+                    <label for="">Email : &emsp;&emsp;&emsp;</label>
+                    <input type="text" name="" id="email" placeholder="email">
+                </div>
+                <div>
+                    <label for="">Position : &emsp;&emsp;</label>
+                    <input type="text" name="" id="position" placeholder="Position">
+                </div>
+                <div>
+                    <input type="submit" >
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+<script src="/script/updateEmployee.js"></script>
+<script src="/script/getAllEmployee.js"></script>
+
+</html>

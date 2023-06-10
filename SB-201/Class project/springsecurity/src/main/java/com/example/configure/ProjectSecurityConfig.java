@@ -20,7 +20,8 @@ public class ProjectSecurityConfig {
 
             http.authorizeHttpRequests( auth -> {
 //                auth.anyRequest().permitAll();
-                auth.requestMatchers("/admin","/welcome").permitAll().anyRequest().authenticated();
+                auth.requestMatchers("/admin","/welcome").permitAll()
+                        .anyRequest().authenticated();
             }).formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
 
             return http.build();
