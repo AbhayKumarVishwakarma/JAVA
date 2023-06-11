@@ -11,35 +11,25 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class AppConfig {
-	
 
 	@Bean
 	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
-
 		http.authorizeHttpRequests(auth ->{
-			
-			auth
-			.requestMatchers(HttpMethod.POST,"/customers").permitAll()
-		.requestMatchers(HttpMethod.GET, "/customers","/hello").hasRole("ADMIN")
-		.requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN","USER")
+			auth.requestMatchers(HttpMethod.POST,"/customers").permitAll()
+			.requestMatchers(HttpMethod.GET, "/customers").hasRole("ADMIN")
+			.requestMatchers(HttpMethod.GET, "/customers/**","/hello").hasAnyRole("ADMIN","USER")
+			.requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
 			.anyRequest().authenticated();
-			
 		})
 		.csrf(csrf -> csrf.disable())
 		.formLogin(Customizer.withDefaults())
 		.httpBasic(Customizer.withDefaults());
-		
-		
 		return http.build();
-
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-
 		return new BCryptPasswordEncoder();
-
 	}
-	
 
 }
