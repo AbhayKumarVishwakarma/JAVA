@@ -15,7 +15,7 @@ public class AppConfig {
 
     /**
      *
-     * @param http
+     * @param http localhost://8080/
      * @return
      * @throws Exception
      */
@@ -23,10 +23,10 @@ public class AppConfig {
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.POST, "/customers").permitAll()
-                            .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+                            .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()  // for enable the swagger
                             .anyRequest().authenticated();
                 })
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable())  // It disables the csrf (Cross Site request forgery)
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
