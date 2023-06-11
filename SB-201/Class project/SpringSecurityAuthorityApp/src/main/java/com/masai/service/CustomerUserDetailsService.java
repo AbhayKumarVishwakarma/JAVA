@@ -26,31 +26,20 @@ public class CustomerUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
 		Optional<Customer> opt = customerRepository.findByEmail(username);
-
 		if (opt.isPresent()) {
-
 			Customer customer = opt.get();
-
 			List<GrantedAuthority> authorities = new ArrayList<>();
-
 			List<Authority> auths = customer.getAuthorities();
-
 			for (Authority auth : auths) {
 				SimpleGrantedAuthority sga = new SimpleGrantedAuthority(auth.getName());
 				authorities.add(sga);
 			}
-
 			System.out.println("granted authorities " + authorities);
-
 			return new User(customer.getEmail(), customer.getPassword(), authorities);
-			
-//return new User(customer.getEmail(), customer.getPassword(), getGrantedAuthorities(customer.getAuthorities()));
-
+//			return new User(customer.getEmail(), customer.getPassword(), getGrantedAuthorities(customer.getAuthorities()));
 		} else
 			throw new BadCredentialsException("User Details not found with this username: " + username);
-
 	}
 
 //	 private List<GrantedAuthority> getGrantedAuthorities(List<Authority> authorities) {
@@ -60,7 +49,5 @@ public class CustomerUserDetailsService implements UserDetailsService {
 //	        }
 //	        return grantedAuthorities;
 //	    }
-
-
 
 }

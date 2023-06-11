@@ -18,35 +18,24 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer registerCustomer(Customer customer) throws CustomerException {
-		
-		List<Authority> authorities= customer.getAuthorities();
-		
-		//associating each authority with customer
-		for(Authority authority:authorities) {
+		List<Authority> authorities = customer.getAuthorities();
+
+		for(Authority authority : authorities) {  //associating each authority with customer
 			authority.setCustomer(customer);
 		}
-		
 		return customerRepository.save(customer);
-		
-		
 	}
 
 	@Override
-	public Customer getCustomerDetailsByEmail(String email)throws CustomerException {
-		
-		return customerRepository.findByEmail(email).orElseThrow(() -> new CustomerException("Customer Not found with Email: "+email));
+	public Customer getCustomerDetailsByEmail(String email) throws CustomerException {
+		return customerRepository.findByEmail(email).orElseThrow(() -> new CustomerException("Customer Not found with Email: " + email));
 	}
 
 	@Override
-	public List<Customer> getAllCustomerDetails()throws CustomerException {
-		
-		List<Customer> customers= customerRepository.findAll();
-		
-		if(customers.isEmpty())
-			throw new CustomerException("No Customer find");
-		
+	public List<Customer> getAllCustomerDetails() throws CustomerException {
+		List<Customer> customers = customerRepository.findAll();
+		if(customers.isEmpty()) throw new CustomerException("No Customer find");
 		return customers;
-		
 	}
 
 }

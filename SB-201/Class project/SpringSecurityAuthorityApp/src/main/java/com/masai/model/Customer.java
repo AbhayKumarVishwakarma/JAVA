@@ -26,12 +26,13 @@ public class Customer {
 	
 	@Column(unique = true)
 	private String email;
+
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	private String address;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer",fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer",fetch = FetchType.EAGER)
 	private List<Authority> authorities = new ArrayList<>();
 	
 	//getters and setters
