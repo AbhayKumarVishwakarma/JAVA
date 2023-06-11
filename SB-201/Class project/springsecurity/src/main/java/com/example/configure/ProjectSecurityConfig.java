@@ -27,6 +27,10 @@ public class ProjectSecurityConfig {
             return http.build();
     }
 
+    /**
+     * Spring Security Project with Custom User using InMemoryUserDetailsManager
+     * @return 
+     */
     @Bean
     public InMemoryUserDetailsManager userDetails(){
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
