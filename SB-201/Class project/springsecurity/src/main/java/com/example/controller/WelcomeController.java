@@ -8,19 +8,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WelcomeController {
 
-    //This should not be protected
+    /**
+     * anyone can access
+     * @return message type of string
+     */
     @GetMapping("/welcome")
     public ResponseEntity<String> welcome(){
         return new ResponseEntity<String>("Welcome to Masai App without security",HttpStatus.ACCEPTED);
     }
 
-    //This should  be protected
+    /**
+     * only login user can access
+     * @return message type of string
+     */
     @GetMapping("/welcomeP")
     public ResponseEntity<String> welcomeP(){
         return new ResponseEntity<String>("Welcome to Masai App with Security",HttpStatus.ACCEPTED);
     }
 
-    // admin
+    /**
+     * only login admin can access
+     * @return message type of string
+     */
     @GetMapping("/admin")
     public ResponseEntity<String> admin(){
         return new ResponseEntity<>("Welcome to Masai app for admin",HttpStatus.ACCEPTED);

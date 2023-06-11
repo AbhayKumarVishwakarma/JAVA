@@ -19,7 +19,7 @@ public class ProjectSecurityConfig {
     public SecurityFilterChain masaiSecurityFilter(HttpSecurity http) throws Exception {
 
             http.authorizeHttpRequests( auth -> {
-//                auth.anyRequest().permitAll();
+//                auth.anyRequest().permitAll();  // it will give permission to all http request
                 auth.requestMatchers("/admin","/welcome").permitAll()
                         .anyRequest().authenticated();
             }).formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
