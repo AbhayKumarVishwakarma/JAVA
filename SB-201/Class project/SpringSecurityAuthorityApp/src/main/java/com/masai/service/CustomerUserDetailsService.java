@@ -42,12 +42,13 @@ public class CustomerUserDetailsService implements UserDetailsService {
 			throw new BadCredentialsException("User Details not found with this username: " + username);
 	}
 
-//	 private List<GrantedAuthority> getGrantedAuthorities(List<Authority> authorities) {
-//	        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-//	        for (Authority authority : authorities) {
-//	            grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
-//	        }
-//	        return grantedAuthorities;
-//	    }
-
+	/*
+	 private List<GrantedAuthority> getGrantedAuthorities(List<Authority> authorities) {
+	        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+	        for (Authority authority : authorities) {
+	            grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
+	        }
+	        return grantedAuthorities;
+	    }
+	*/
 }
