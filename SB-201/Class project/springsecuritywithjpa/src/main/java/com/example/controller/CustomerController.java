@@ -26,7 +26,7 @@ public class CustomerController {
 
     /**
      * anyone can access
-     * @return a welcome message
+     * @return String of welcome message
      */
     @GetMapping("/hello")
     public String testHandler() {
@@ -37,18 +37,18 @@ public class CustomerController {
     /**
      * anyone can access and register himself
      * @param customer
-     * @return ResponseEntity with customer
+     * @return ResponseEntity with saved customer
      */
     @PostMapping("/customers")
     public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));  // Provided password converting into hash value
         Customer registeredCustomer = customerService.registerCustomer(customer);
         return new ResponseEntity<>(registeredCustomer,HttpStatus.ACCEPTED);
     }
 
 
     /**
-     * access by login user and he/she can search customer by email
+     * only access by login user and he/she can search customer by email
      * @param email
      * @return ResponseEntity with customer
      */
@@ -58,10 +58,8 @@ public class CustomerController {
         return new ResponseEntity<>(customer,HttpStatus.OK);
     }
 
-    // access by login user
-
     /**
-     * access by login user and he/she can see all customers
+     * only access by login user and he/she can see all customers
      * @return ResponseEntity with list of customers
      */
     @GetMapping("/customers")
@@ -74,7 +72,7 @@ public class CustomerController {
     /**
      * only register user can access and signIn
      * @param auth
-     * @return ResponseEntity with message
+     * @return ResponseEntity with logged In message
      */
     @GetMapping("/signIn")
     public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){

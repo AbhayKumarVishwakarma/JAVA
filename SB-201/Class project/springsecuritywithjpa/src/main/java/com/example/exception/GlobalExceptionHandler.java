@@ -11,6 +11,12 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * This exception will handle the customer exception
+     * @param e
+     * @param w
+     * @return ResponseEntity with proper message of exception
+     */
     @ExceptionHandler(CustomerException.class)
     public ResponseEntity<MyErrorDetails> customerExceptionHandler(CustomerException e, WebRequest w){
         MyErrorDetails details = new MyErrorDetails();
