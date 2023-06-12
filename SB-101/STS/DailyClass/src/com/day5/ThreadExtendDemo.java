@@ -1,6 +1,6 @@
 package com.day5;
 
-public class ThreadExtendDemo extends Thread {
+public class ThreadExtendDemo extends Thread { // step-1
 	@Override
 	public void run() { //step-2
 		//whatever you wanted to make the new thread do, write here

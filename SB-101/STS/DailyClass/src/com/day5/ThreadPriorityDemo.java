@@ -6,7 +6,7 @@ public class ThreadPriorityDemo extends Thread {
 
 	public void run(){
 		while(runMe)
-				counter++;
+			counter++;
 	}
 
 	public static void main(String args[]){
