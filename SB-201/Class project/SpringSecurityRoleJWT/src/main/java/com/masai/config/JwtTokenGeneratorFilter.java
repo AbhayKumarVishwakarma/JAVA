@@ -22,54 +22,50 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		
-	
-		
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (null != authentication) {
-        	
-        	
-        	
-        	
+        if (authentication != null) {
             SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
-            
-            
-            
             String jwt = Jwts.builder()
             		.setIssuer("Ram")
             		.setSubject("JWT Token")
                     .claim("username", authentication.getName())
                     .claim("authorities", populateAuthorities(authentication.getAuthorities()))
                     .setIssuedAt(new Date())
-                    .setExpiration(new Date(new Date().getTime()+ 30000000)) // millisecond expiration time of around 8 hours
+                    .setExpiration(new Date(new Date().getTime() + 30000000)) // millisecond expiration time of around 8 hours
                     .signWith(key).compact();
-                       
             response.setHeader(SecurityConstants.JWT_HEADER, jwt);
- 
         }
-
         filterChain.doFilter(request, response);	
 	}
 	
     private String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
-        
     	Set<String> authoritiesSet = new HashSet<>();
-        
         for (GrantedAuthority authority : collection) {
             authoritiesSet.add(authority.getAuthority());
         }
         return String.join(",", authoritiesSet);
-   
-    
     }
 	
-//this make sure that this filter will execute only for first time when client call the api /signIn at first time
-	@Override
+
+    /**
+     * Make sure that this filter will execute only once when client call the api / signIn at first time
+     * @param request
+     * @return
+     * @throws ServletException
+     */
+    @Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-	
         return !request.getServletPath().equals("/signIn");	
 	}
 	
