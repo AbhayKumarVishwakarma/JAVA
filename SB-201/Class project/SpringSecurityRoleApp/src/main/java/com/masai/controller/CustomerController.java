@@ -44,19 +44,18 @@ public class CustomerController {
         "role": "admin"
     }
 	 */
-	
 	// add another Customer with only the role "user"
 
 	/**
-	 * any user can access and create a account
+	 * any user can access and create an account
 	 * @param customer
 	 * @return response entity of saved customers
 	 */
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-		customer.setRole("ROLE_"+customer.getRole().toUpperCase());
-		Customer registeredCustomer= customerService.registerCustomer(customer);
+		customer.setRole("ROLE_" + customer.getRole().toUpperCase());
+		Customer registeredCustomer = customerService.registerCustomer(customer);
 		return new ResponseEntity<>(registeredCustomer,HttpStatus.ACCEPTED);
 	}
 
@@ -66,7 +65,7 @@ public class CustomerController {
 	 */
 	@GetMapping("/customers/{email}")
 	public ResponseEntity<Customer> getCustomerByEmailHandler(@PathVariable("email") String email){
-		Customer customer= customerService.getCustomerDetailsByEmail(email);
+		Customer customer = customerService.getCustomerDetailsByEmail(email);
 		return new ResponseEntity<>(customer,HttpStatus.ACCEPTED);
 		
 	}
@@ -77,7 +76,7 @@ public class CustomerController {
 	 */
 	@GetMapping("/customers")
 	public ResponseEntity<List<Customer>> getAllCustomerHandler(){
-		List<Customer> customers= customerService.getAllCustomerDetails();
+		List<Customer> customers = customerService.getAllCustomerDetails();
 		return new ResponseEntity<>(customers,HttpStatus.ACCEPTED);
 		
 	}
@@ -85,12 +84,12 @@ public class CustomerController {
 	/**
 	 * any register customer can access for sign-in
 	 * @param auth
-	 * @return
+	 * @return string message
 	 */
 	@GetMapping("/signIn")
 	public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
 		System.out.println(auth); // this Authentication object having Principle object details
-		 Customer customer= customerService.getCustomerDetailsByEmail(auth.getName());
+		 Customer customer = customerService.getCustomerDetailsByEmail(auth.getName());
 		 return new ResponseEntity<>(customer.getName()+" logged In Successfully", HttpStatus.ACCEPTED);
 	}
 }

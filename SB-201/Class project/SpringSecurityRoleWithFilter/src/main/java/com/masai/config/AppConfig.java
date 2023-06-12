@@ -12,8 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -26,14 +24,14 @@ public class AppConfig {
 	@Bean
 	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 
-		CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
-		
-		http.cors(cors -> {
+		http.cors(cors ->{
 			
 			cors.configurationSource(new CorsConfigurationSource() {
 				
 				@Override
 				public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+				
+				
 					CorsConfiguration cfg = new CorsConfiguration();
 					
 					cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
@@ -41,24 +39,33 @@ public class AppConfig {
 					cfg.setAllowCredentials(true);
 					cfg.setAllowedHeaders(Collections.singletonList("*"));
 					cfg.setExposedHeaders(Arrays.asList("Authorization"));
+					
+					
 					return cfg;				
+				
+				
+				
 				}
 			});
-
-		}).authorizeHttpRequests(auth ->{
+			
+			
+		})
+		.authorizeHttpRequests(auth ->{
 			
 			auth
 			.requestMatchers(HttpMethod.POST,"/customers").permitAll()
-			.requestMatchers(HttpMethod.GET, "/customers","/hello").hasRole("ADMIN")
-			.requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN","USER")
+		.requestMatchers(HttpMethod.GET, "/customers","/hello").hasRole("ADMIN")
+		.requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN","USER")
 			.anyRequest().authenticated();
 			
 		})
-		.csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/notice","/contact","/customers")
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-		.addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+		.csrf(csrf -> csrf.disable())
+		.addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)
+		.addFilterAfter(new CustomOncePerRequestFilter(), BasicAuthenticationFilter.class)
+		.addFilterAt(new LoggingFilterAt(), BasicAuthenticationFilter.class)
 		.formLogin(Customizer.withDefaults())
 		.httpBasic(Customizer.withDefaults());
+		
 		
 		return http.build();
 
@@ -66,7 +73,9 @@ public class AppConfig {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
+
 		return new BCryptPasswordEncoder();
+
 	}
 	
 
