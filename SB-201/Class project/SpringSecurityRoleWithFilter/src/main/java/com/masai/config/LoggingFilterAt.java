@@ -20,8 +20,6 @@ public class LoggingFilterAt implements Filter {
 			throws IOException, ServletException {
 
 		log.info("Authentication validation is in progress");
-
 		chain.doFilter(request, response);
-
 	}
 }

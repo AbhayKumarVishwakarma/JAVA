@@ -15,42 +15,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class CustomOncePerRequestFilter extends OncePerRequestFilter{
 
-	
 	private final Logger log = LoggerFactory.getLogger(CustomOncePerRequestFilter.class);
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-		
-		
-		
 
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		
-		
-		if(auth != null) {
-			
-			log.info("User "+auth.getName()+" is successfully authenticated and has Authorties "+ auth.getAuthorities().toString());
-		}
-		
+		if(auth != null) log.info("User "+auth.getName()+" is successfully authenticated and has Authorties "+ auth.getAuthorities().toString());
 		chain.doFilter(request, response);
-		
 	}
-	
-	
-	
+
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		
-
 		return !request.getServletPath().equals("/signIn");
-		
-		
 	}
-	
-	
-	
-	
-	
 
 }
