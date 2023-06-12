@@ -22,7 +22,7 @@ public class CustomOncePerRequestFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 
 		Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-		if(auth != null) log.info("User "+auth.getName()+" is successfully authenticated and has Authorties "+ auth.getAuthorities().toString());
+		if(auth != null) log.info("User "+ auth.getName() + " is successfully authenticated and has Authorities "+ auth.getAuthorities().toString());
 		chain.doFilter(request, response);
 	}
 
