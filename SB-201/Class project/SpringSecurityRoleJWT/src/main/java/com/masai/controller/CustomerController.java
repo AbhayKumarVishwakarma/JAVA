@@ -41,8 +41,12 @@ public class CustomerController {
     }
 	 */
 	// add another Customer with only the role "user"
-	
-	
+
+	/**
+	 * anyone can access and register
+	 * @param customer
+	 * @return
+	 */
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
@@ -62,7 +66,12 @@ public class CustomerController {
 		List<Customer> customers = customerService.getAllCustomerDetails();
 		return new ResponseEntity<>(customers,HttpStatus.ACCEPTED);
 	}
-	
+
+	/**
+	 * Register user can signIn
+	 * @param auth
+	 * @return
+	 */
 	@GetMapping("/signIn")
 	public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
 		System.out.println(auth);  // this Authentication object having Principle object details

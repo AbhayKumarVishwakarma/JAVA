@@ -48,9 +48,4 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 		return request.getServletPath().equals("/signIn");
 	}
 
-
-	
-	
-	
-	
 }
