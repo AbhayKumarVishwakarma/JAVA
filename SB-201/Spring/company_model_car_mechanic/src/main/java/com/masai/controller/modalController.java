@@ -39,7 +39,7 @@ public class modalController {
         return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
-    @GetMapping("/modalU/{modalId}")
+    @GetMapping("/modalAll")
     public ResponseEntity<List<Modal>> updateModalHandler(){
         List<Modal> m = modalService.allModal();
         return new ResponseEntity<>(m, HttpStatus.OK);
