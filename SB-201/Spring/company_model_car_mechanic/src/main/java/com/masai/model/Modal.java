@@ -1,5 +1,6 @@
 package com.masai.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class Modal {  // (id: int, model_name: String, launching_year: int)
     @ManyToOne(cascade = CascadeType.ALL)
     private Company company;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "modal", fetch = FetchType.EAGER)
     private List<Car> carList = new ArrayList<>();
 }

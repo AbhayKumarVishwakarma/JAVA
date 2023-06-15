@@ -33,7 +33,7 @@ public class ModalServiceImpl implements ModalService{
         Modal modal = modalRepository.findById(modalId).orElseThrow( () -> new ModalException("Not find any modal with id: " + modalId));
         if(m.getModelName() != null) modal.setModelName(m.getModelName());
         if(m.getLaunchingYear() != 0) modal.setLaunchingYear(m.getLaunchingYear());
-        return null;
+        return modalRepository.save(modal);
     }
 
     @Override

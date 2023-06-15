@@ -1,5 +1,6 @@
 package com.masai.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Mechanic {  // (id: int, empId: String, name: String, )
     private String empId;
     private String mechanicName;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Car> carList = new ArrayList<>();
 }
