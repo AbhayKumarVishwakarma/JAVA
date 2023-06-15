@@ -1,10 +1,10 @@
 package com.masai.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,6 +12,13 @@ public class Car {  // (id: int, registration_number: String, price: double, mfg
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer carId;
+
     private String registrationNumber;
     private Integer mfgYear;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Modal modal;
+
+    @ManyToMany(mappedBy = "carList", fetch = FetchType.EAGER)
+    private List<Mechanic> mechanicList = new ArrayList<>();
 }

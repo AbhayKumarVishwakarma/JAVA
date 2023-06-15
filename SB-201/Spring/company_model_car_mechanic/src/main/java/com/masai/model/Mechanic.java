@@ -1,10 +1,10 @@
 package com.masai.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,4 +14,7 @@ public class Mechanic {  // (id: int, empId: String, name: String, )
     private Integer mechanicId;
     private String empId;
     private String mechanicName;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Car> carList = new ArrayList<>();
 }
