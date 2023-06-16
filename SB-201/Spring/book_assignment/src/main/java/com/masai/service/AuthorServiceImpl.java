@@ -23,14 +23,14 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public Book createBook(Book book, Integer cusId) {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
         return bookRepository.save(book);
     }
 
     @Override
     public Book updateBook(Integer id, Book book, Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
         Book b = bookRepository.findById(id).orElseThrow( () -> new BookException("Not find any book with id: " + id));
         if(book.getAuthorNo() != null) b.setAuthorNo(book.getAuthorNo());
         if(book.getAuthor() != null) b.setAuthor((book.getAuthor()));
@@ -45,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public Book deleteBook(Integer id, Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
         Book b = bookRepository.findById(id).orElseThrow( () -> new BookException("Not find any book with id: " + id));
         bookRepository.delete(b);
         return b;
@@ -54,14 +54,14 @@ public class AuthorServiceImpl implements AuthorService{
     @Override
     public Book bookById(Integer id, Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
-        return bookRepository.findById(id).orElseThrow( () -> new BookException("Not find any book with id: " + id));;
+        if(!customer.getRolee().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
+        return bookRepository.findById(id).orElseThrow( () -> new BookException("Not find any book with id: " + id));
     }
 
     @Override
     public List<Book> allBook(Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("AUTHOR")) throw new RuntimeException("You can't perform this operation!");
         List<Book> list = bookRepository.findAll();
         if(list.isEmpty()) throw new BookException("Not find any book!");
         return list;

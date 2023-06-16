@@ -1,5 +1,5 @@
 package com.masai.model;
 
-public enum Role {
+public enum Rolee {
     READER, AUTHOR
 }

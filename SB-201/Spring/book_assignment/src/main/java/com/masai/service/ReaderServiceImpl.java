@@ -23,7 +23,7 @@ public class ReaderServiceImpl implements ReaderService{
     @Override
     public ObjectDTO bookByIdReader(Integer id, Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("READER")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("READER")) throw new RuntimeException("You can't perform this operation!");
         ObjectDTO o = bookRepository.getBookByIdReader(id);
         if(o == null) throw new BookException("Not find any book with id: " + id);
         return o;
@@ -32,7 +32,7 @@ public class ReaderServiceImpl implements ReaderService{
     @Override
     public List<ObjectDTO> allBookReader(Integer cusId) throws BookException {
         Customer customer = customerRepository.findById(cusId).orElseThrow( () -> new CustomerException("Not find any customer with id: " + cusId));
-        if(!customer.getRole().equals("READER")) throw new RuntimeException("You can't perform this operation!");
+        if(!customer.getRolee().equals("READER")) throw new RuntimeException("You can't perform this operation!");
         List<ObjectDTO> o = bookRepository.getAllBookReader();
         if(o.isEmpty()) throw new BookException("Not find any book");
         return o;
