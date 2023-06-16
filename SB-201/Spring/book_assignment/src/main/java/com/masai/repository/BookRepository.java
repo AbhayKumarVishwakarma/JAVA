@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    @Query("select name, author, publication, category, page, price from book where id=?1 and role='READER'")
+    @Query("select name, author, publication, category, page, price from book where id=?1")
     public ObjectDTO getBookByIdReader(Integer id);
 
-    @Query("select name, author, publication, category, page, price from book where role='READER'")
+    @Query("select name, author, publication, category, page, price from book")
     public List<ObjectDTO> getAllBookReader();
 
 }

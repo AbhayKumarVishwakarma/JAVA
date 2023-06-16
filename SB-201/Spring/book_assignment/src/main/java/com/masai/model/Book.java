@@ -17,7 +17,4 @@ public class Book {
     private Integer price;
     private String authorNo;
     private String registrationNumber;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
 }
