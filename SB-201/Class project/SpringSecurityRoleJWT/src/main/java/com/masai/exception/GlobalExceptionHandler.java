@@ -10,27 +10,22 @@ import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	
-	
+
 	@ExceptionHandler(CustomerException.class)
 	public ResponseEntity<MyErrorDetails> customerExceptionHandler(CustomerException ce, WebRequest req){
-				
 		MyErrorDetails err= new MyErrorDetails();
-			err.setTimestamp(LocalDateTime.now());
-			err.setMessage(ce.getMessage());
-			err.setDetails(req.getDescription(false));
-				
+		err.setTimestamp(LocalDateTime.now());
+		err.setMessage(ce.getMessage());
+		err.setDetails(req.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<MyErrorDetails> otherExceptionHandler(Exception se, WebRequest req){
-		
 		MyErrorDetails err= new MyErrorDetails();
-			err.setTimestamp(LocalDateTime.now());
-			err.setMessage(se.getMessage());
-			err.setDetails(req.getDescription(false));
-				
+		err.setTimestamp(LocalDateTime.now());
+		err.setMessage(se.getMessage());
+		err.setDetails(req.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.INTERNAL_SERVER_ERROR);	
 	}
 

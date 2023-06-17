@@ -31,7 +31,7 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 				SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
 				Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 				String username = String.valueOf(claims.get("username"));
-				String authorities = (String)claims.get("authorities");
+				String authorities = (String) claims.get("authorities");
 				Authentication auth = new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			} catch (Exception e) {
@@ -40,7 +40,6 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
 		}
 		filterChain.doFilter(request, response);
 	}
-	
 
 	//this time this validation filter has to be executed for all the apis except the /signIn api
 	@Override

@@ -26,6 +26,10 @@ public class CustomerController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	/**
+	 * anyone can access without signIn
+	 * @return welcome message
+	 */
 	@GetMapping("/hello")
 	public String testHandler() {
 		return "Welcome to Spring Security";
@@ -68,7 +72,7 @@ public class CustomerController {
 	}
 
 	/**
-	 * Register user can signIn
+	 * only Register user can signIn
 	 * @param auth
 	 * @return
 	 */
