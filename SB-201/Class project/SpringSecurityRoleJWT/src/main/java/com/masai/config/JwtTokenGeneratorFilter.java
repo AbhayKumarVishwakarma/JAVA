@@ -37,12 +37,12 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
         if (authentication != null) {
             SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes());
             String jwt = Jwts.builder()
-            		.setIssuer("Ram")
+            		.setIssuer("India")
             		.setSubject("JWT Token")
                     .claim("username", authentication.getName())
                     .claim("authorities", populateAuthorities(authentication.getAuthorities()))
                     .setIssuedAt(new Date())
-                    .setExpiration(new Date(new Date().getTime() + 30000000)) // millisecond expiration time of around 8 hours
+                    .setExpiration(new Date(new Date().getTime() + 864000000)) // millisecond expiration time of around 8 hours
                     .signWith(key).compact();
             response.setHeader(SecurityConstants.JWT_HEADER, jwt);
         }
@@ -51,9 +51,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 	
     private String populateAuthorities(Collection<? extends GrantedAuthority> collection) {
     	Set<String> authoritiesSet = new HashSet<>();
-        for (GrantedAuthority authority : collection) {
-            authoritiesSet.add(authority.getAuthority());
-        }
+        for (GrantedAuthority authority : collection) authoritiesSet.add(authority.getAuthority());
         return String.join(",", authoritiesSet);
     }
 	
