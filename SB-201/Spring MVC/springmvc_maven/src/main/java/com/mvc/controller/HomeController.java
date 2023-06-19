@@ -49,4 +49,22 @@ public class HomeController {
 
         return modelAndView;
     }
+
+    /**
+     * Using modelAndView class
+     * Passing the value from controller to jsp page with the help of JSP expression
+     * @return
+     */
+    @GetMapping("/more")
+    public ModelAndView more(){
+        System.out.println("Inside more section...");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("java", "Java was introduces in 1991.");
+        modelAndView.addObject("js", "JavaScript is popular for frontend.");
+
+        modelAndView.setViewName("more");
+
+        return modelAndView;
+    }
 }
