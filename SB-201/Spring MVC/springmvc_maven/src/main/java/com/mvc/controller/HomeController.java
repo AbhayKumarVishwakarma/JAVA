@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HomeController {
 
@@ -62,6 +65,15 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("java", "Java was introduces in 1991.");
         modelAndView.addObject("js", "JavaScript is popular for frontend.");
+
+        List<Integer> list = new ArrayList<>();
+        list.add(321);
+        list.add(362);
+        list.add(987);
+        list.add(766);
+        list.add(123);
+
+        modelAndView.addObject("Mlist", list);
 
         modelAndView.setViewName("more");
 
