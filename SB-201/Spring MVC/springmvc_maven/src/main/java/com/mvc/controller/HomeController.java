@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +19,9 @@ public class HomeController {
         System.out.println("Inside home section...");
         return "index";
     }
+
+
+    // Sending data from controller to view (about, help, more)
 
     /**
      * Using model class
@@ -79,4 +83,22 @@ public class HomeController {
 
         return modelAndView;
     }
+
+
+    // Sending data from view to controller
+
+    @GetMapping("/addDetails")
+    public String showForm(){
+        return "addDetails";
+    }
+
+    @PostMapping("/processForm")
+    public String formHandler(@RequestParam String username, @RequestParam String email, @RequestParam String password, Model model){
+        System.out.println(username +"\n"+ email +"\n"+ password);
+        model.addAttribute("username", username);
+        model.addAttribute("email", email);
+        model.addAttribute("password", password);
+        return "viewDetails";
+    }
+
 }
