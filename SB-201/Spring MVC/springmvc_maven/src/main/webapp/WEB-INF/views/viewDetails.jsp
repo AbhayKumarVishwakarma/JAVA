@@ -3,13 +3,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View Details</title>
+	<meta charset="ISO-8859-1">
+	<title>Student Management System</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
+
 <body>
-        <h1> Welcome to view details page... </h1>
-        <h2> Username - ${username} </h2>
-        <h2> Email - ${email} </h2>
-        <h2> Password - ${password} </h2>
+
+	<div class="container">
+		<div class="row mt-4">
+			<h1>List Employees</h1>
+		</div>
+
+
+		<table class="table table-dark table-bordered mt-15">
+			<thead class="table-dark">
+				<tr>
+					<th>UserName</th>
+					<th>Email</th>
+					<th>Password</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td text="">${username}</td>
+					<td text="">${email}</td>
+					<td text="">${password}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 </body>
+
 </html>
