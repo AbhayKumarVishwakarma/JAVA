@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Employee</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<div class="container mt-5">
+
+		<div class="raw">
+
+			<div class="col-Lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center mt-4">Create new Employee</h1>
+				<div class="card-body">
+
+					<form th:action="@{/employees}" th:object="${employee}" method="POST">
+
+						<div class="form-group">
+
+							<label>FirstName</label> <input type="text" name="firstname" th:field="*{firstname}"
+								placeholder="firstname" class="form-control">
+
+						</div>
+						<div class="form-group">
+
+							<label>LastName</label> <input type="text" name="lastname" th:field="*{lastname}"
+								placeholder="lastname" class="form-control">
+
+						</div>
+						<div class="form-group">
+
+							<label>Email</label> <input type="text" name="email" th:field="*{email}" placeholder="email"
+								class="form-control">
+
+						</div>
+						<div class="box-footer">
+
+							<button type="submit" class="btn btn-primary"> Submit </button>
+
+						</div>
+
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+
+
+</html>
