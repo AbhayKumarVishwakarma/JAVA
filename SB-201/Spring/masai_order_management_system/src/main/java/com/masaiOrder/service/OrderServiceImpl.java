@@ -1,5 +1,6 @@
 package com.masaiOrder.service;
 
+import com.masaiOrder.component.MyComponent;
 import com.masaiOrder.exception.CustomerException;
 import com.masaiOrder.exception.OrderException;
 import com.masaiOrder.model.Customer;
@@ -15,18 +16,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderedService{
     @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private MyComponent component;
+
 
     @Override
-    public Order createOrder(Order order, Integer cusID) throws CustomerException {
+    public Order createOrder(Order order) throws CustomerException {
         if(order == null) throw new OrderException("Not find any order");
-        Customer customer = customerRepository.findById(cusID).orElseThrow(() -> new CustomerException("Not found any customer with id: " + cusID));
+        String email = component.getCurrentUsername();
+        Customer customer = customerRepository.findByEmail(email).orElseThrow(() -> new CustomerException("Customer Not found with Email: " + email));
         order.setCustomer(customer);
         customer.getOrderList().add(order);
         return orderRepository.save(order);
@@ -71,14 +76,14 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Order> allOrderBetweenDate(LocalDate str, LocalDate end) throws OrderException {
-        List<Order> orderList = orderRepository.findBetweenDate(str,end);
+        List<Order> orderList = orderRepository.findByOrderDateBetween(str, end);
         if(orderList.isEmpty()) throw new OrderException("Not find any order between " + str + " and " + end);
         return orderList;
     }
 
     @Override
     public Integer totalRevenueOnDate(LocalDate str, LocalDate end) throws OrderException {
-        List<Order> orderList = orderRepository.findBetweenDate(str,end);
+        List<Order> orderList = orderRepository.findByOrderDateBetween(str, end);
         if(orderList.isEmpty()) throw new OrderException("Not find any order between " + str + " and " + end);
         Integer total = 0;
         for(Order o : orderList) total += o.getItem().getPrice();

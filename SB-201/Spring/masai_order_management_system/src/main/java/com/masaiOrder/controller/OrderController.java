@@ -2,7 +2,7 @@ package com.masaiOrder.controller;
 
 import com.masaiOrder.model.Item;
 import com.masaiOrder.model.Order;
-import com.masaiOrder.service.OrderService;
+import com.masaiOrder.service.OrderedService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/masaiOrder")
 public class OrderController {
+
     @Autowired
-    private OrderService orderService;
+    private OrderedService orderService;
 
     @PostMapping("/orders")
-    public ResponseEntity<Order> saveOrder(@Valid @RequestBody Order order, @RequestParam Integer cusId){
-        Order o = orderService.createOrder(order, cusId);
+    public ResponseEntity<Order> saveOrder(@Valid @RequestBody Order order){
+        Order o = orderService.createOrder(order);
         return new ResponseEntity<>(o, HttpStatus.OK);
     }
 
@@ -48,13 +49,13 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/orders/name")
     public ResponseEntity<List<Order>> viewAllOrderByCusName(@RequestParam String customerName){
         List<Order> orderList = orderService.allOrderByCustomerName(customerName);
         return new ResponseEntity<>(orderList, HttpStatus.OK);
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/orders/date")
     public ResponseEntity<List<Order>> viewAllOrderByStrAndEndDate(@RequestParam String startDate, @RequestParam String endDate){
         List<Order> orderList = orderService.allOrderBetweenDate(LocalDate.parse(startDate),LocalDate.parse(endDate));
         return new ResponseEntity<>(orderList, HttpStatus.OK);

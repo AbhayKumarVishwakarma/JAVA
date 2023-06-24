@@ -6,13 +6,14 @@ import java.util.*;
 import com.masaiOrder.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrderRepository extends JpaRepository<Order,Integer> {
-//    public Order findByOrderID(Integer id);
 
-    @Query("select o from order o where orderDate between ?1 and ?2")
-    public List<Order> findBetweenDate(LocalDate str, LocalDate end);
+    @Query("SELECT o FROM Order o WHERE o.orderDate BETWEEN ?1 AND ?2")
+    List<Order> findByOrderDateBetween(LocalDate startDate, LocalDate endDate);
 
-    @Query("select o from order o where orderDate = ?1")
-    public List<Order> findByDate(LocalDate date);
+    @Query("SELECT o FROM Order o WHERE o.orderDate = ?1")
+    List<Order> findByDate(LocalDate date);
 }

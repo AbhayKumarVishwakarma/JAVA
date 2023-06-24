@@ -18,13 +18,14 @@ public class AppConfig {
         http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->{
                     auth
-                        .requestMatchers(HttpMethod.POST,"/register").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/welcome").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/customer/{cusId}/vehicle").hasAnyRole("MANAGER","DRIVER","GUEST")
-                        .requestMatchers(HttpMethod.GET, "/vehicles").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.GET, "/vehicle/{vId}").hasAnyRole("MANAGER","DRIVER")
-                        .requestMatchers(HttpMethod.PUT, "/vehicle/{vId}").hasAnyRole("MANAGER","DRIVER")
-                        .requestMatchers(HttpMethod.DELETE, "/vehicle/{vId}").hasAnyRole("MANAGER","DRIVER")
+                        .requestMatchers(HttpMethod.POST,"/masaiOrder/register").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/masaiOrder/welcome").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/masaiOrder/orders").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/masaiOrder/orders","/masaiOrder/orders/{oId}").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/masaiOrder/orders/name","/masaiOrder/orders/date","/masaiOrder/orders/revenue").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.PUT, "/masaiOrder/orders/{oId}").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.DELETE, "/masaiOrder/orders/{oId}").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.GET, "/masaiOrder/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated();
                 })

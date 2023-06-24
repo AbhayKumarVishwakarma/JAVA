@@ -8,8 +8,8 @@ import com.masaiOrder.exception.OrderException;
 import com.masaiOrder.model.Item;
 import com.masaiOrder.model.Order;
 
-public interface OrderService {
-    public Order createOrder(Order order, Integer CusID) throws CustomerException;
+public interface OrderedService {
+    public Order createOrder(Order order) throws CustomerException;
     public Order updateOrder(Integer oId, Item item) throws OrderException;
     public Order deleteOrder(Integer oId) throws OrderException;
     public List<Order> allOrder() throws OrderException;
