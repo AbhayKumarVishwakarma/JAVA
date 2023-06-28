@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/abd")
 public class AppController {
@@ -23,9 +24,9 @@ public class AppController {
     private RestTemplate restTemplate;
 
     @GetMapping("/chat")
-    public List<String> chat(@RequestParam("prompt") String prompt){
+    public List<Response.Choice> chat(@RequestParam("prompt") String prompt){
         Request request = new Request(model, prompt);
         Response response = restTemplate.postForObject(url, request, Response.class);
-        return response.getChoiceList();
+        return response.getChoices();// .get(0).getMessage().getContent();
     }
 }

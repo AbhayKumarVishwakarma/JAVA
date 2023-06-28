@@ -9,13 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Response {
-    private String message;
-    private List<String> choiceList;
 
-    public Response(String message) {
-        this.message = message;
-        this.choiceList = new ArrayList<>();
+    private List<Choice> choices;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Choice {
+
+        private int index;
+        private Message message;
+
     }
+
 }
 
