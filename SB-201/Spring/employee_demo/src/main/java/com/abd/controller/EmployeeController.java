@@ -33,7 +33,7 @@ public class EmployeeController {
         return new ResponseEntity<>(emp, HttpStatus.OK);
     }
 
-    @GetMapping("/login")
+    @GetMapping("/signIn")
     public ResponseEntity<String> loggedInEmployeeHandler(Authentication auth){
         System.out.println(auth);
         Employee emp = employeeService.viewEmployeeByEmail(auth.getName());
