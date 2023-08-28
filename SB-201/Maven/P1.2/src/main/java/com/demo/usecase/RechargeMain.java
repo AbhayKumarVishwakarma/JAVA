@@ -17,5 +17,7 @@ public class RechargeMain {
         DNA_WifiDAO dao = new DNA_WifiDAOImpl();
         String msg = dao.recharge(gb, id);
         System.out.println(msg);
+
+        sc.close();
     }
 }

@@ -42,7 +42,9 @@ public class SaveCustomerMain {
         c.setRecharge_date(date);
 
         DNA_WifiDAO dao = new DNA_WifiDAOImpl();
-        String msg = dao.saveCustomer(c);
+        dao.saveCustomer(c);
         System.out.println(c);
+
+        sc.close();
     }
 }

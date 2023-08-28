@@ -16,5 +16,7 @@ public class FindCustomerByIdMain {
         DNA_WifiDAO dao = new DNA_WifiDAOImpl();
         Customer c = dao.findCustomerById(id);
         System.out.println(c);
+
+        sc.close();
     }
 }

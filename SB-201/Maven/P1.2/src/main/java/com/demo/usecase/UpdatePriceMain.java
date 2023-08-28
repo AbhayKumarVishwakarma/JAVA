@@ -17,5 +17,7 @@ public class UpdatePriceMain {
         DNA_WifiDAO dao = new DNA_WifiDAOImpl();
         String msg = dao.updatePrice(price, id);
         System.out.println(msg);
+
+        sc.close();
     }
 }
