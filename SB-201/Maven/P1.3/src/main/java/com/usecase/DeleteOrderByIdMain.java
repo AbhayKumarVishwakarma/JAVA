@@ -15,5 +15,7 @@ public class DeleteOrderByIdMain {
         OrderDao dao = new OrderDaoImpl();
         String msg = dao.deleteOrderById(id);
         System.out.println(msg);
+
+        sc.close();
     }
 }

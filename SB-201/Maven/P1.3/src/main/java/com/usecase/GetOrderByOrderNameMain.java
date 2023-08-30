@@ -17,5 +17,7 @@ public class GetOrderByOrderNameMain {
         OrderDao dao = new OrderDaoImpl();
         List<Order> list = dao.getOrderByName(oNumber);
         list.forEach(order -> System.out.println(order));
+
+        sc.close();
     }
 }

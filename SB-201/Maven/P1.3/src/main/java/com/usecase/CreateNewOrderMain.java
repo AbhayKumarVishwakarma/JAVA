@@ -3,14 +3,11 @@ package com.usecase;
 import com.dao.OrderDao;
 import com.dao.OrderDaoImpl;
 import com.modul.Order;
-import com.utils.EMUtils;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.Scanner;
 
 /*
@@ -44,5 +41,7 @@ public class CreateNewOrderMain {
         OrderDao dao = new OrderDaoImpl();
         String msg = dao.createOrder(o);
         System.out.println(msg);
+
+        sc.close();
     }
 }
