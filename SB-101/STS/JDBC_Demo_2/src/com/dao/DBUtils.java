@@ -13,7 +13,6 @@ public class DBUtils {
      }
      
      static void closeConnection(Connection con) throws SQLException {
-    	 if(con != null)
-    		 con.close();
+    	 if(con != null) con.close();
      }
 }

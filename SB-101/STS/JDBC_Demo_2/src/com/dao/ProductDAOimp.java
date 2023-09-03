@@ -21,7 +21,7 @@ public class ProductDAOimp implements ProductDAO {
 			String query = "insert into product values (?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			
-			if(ps.executeUpdate()>0) msg = "Product added successfully";
+			if(ps.executeUpdate() > 0) msg = "Product added successfully";
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new ProductException("Unable to add product"); 
@@ -29,7 +29,6 @@ public class ProductDAOimp implements ProductDAO {
 			try {
 				DBUtils.closeConnection(con);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -56,8 +55,7 @@ public class ProductDAOimp implements ProductDAO {
 		} finally {
 			try {
 				DBUtils.closeConnection(con);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			} catch (SQLException e) { 
 				e.printStackTrace();
 			}
 		}
@@ -84,8 +82,7 @@ public class ProductDAOimp implements ProductDAO {
 		} finally {
 			try {
 				DBUtils.closeConnection(con);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			} catch (SQLException e) { 
 				e.printStackTrace();
 			}
 		}
@@ -127,7 +124,7 @@ public class ProductDAOimp implements ProductDAO {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pname);
 			
-			if(ps.executeUpdate()>0) msg = "Product deleted successfully";
+			if(ps.executeUpdate() > 0) msg = "Product deleted successfully";
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new ProductException("Unable to delete product"); 
