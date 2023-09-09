@@ -14,11 +14,6 @@ public class ReadFile {
         List<String> list = Files.readAllLines(p);
         
         Integer total = 0;
-        list.stream().reduce(0, (i,j)->{
-        	String[] arr1 = i.split(" ");
-            String[] arr2 = j.split(" ");
-             Integer.parseInt(arr1[2]) + Integer.parseInt(arr2[2]);
-        });
         
         
 //        forEach(t -> {
