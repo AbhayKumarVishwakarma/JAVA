@@ -13,6 +13,4 @@ public class StudentDTO {
 	private String address;
 	private Integer marks;
 	
-	
-
 }

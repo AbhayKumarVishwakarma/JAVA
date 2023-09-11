@@ -20,9 +20,4 @@ public class Student {
 
 	private Integer marks;
 	
-
-	
-	
-
-	
 }
