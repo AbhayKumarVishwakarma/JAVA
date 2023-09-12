@@ -8,11 +8,7 @@ public class MyErrorDetails {
 	private String message;
 	private String details;
 	
-	
-	public MyErrorDetails() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public MyErrorDetails() {}
 
 	public MyErrorDetails(LocalDateTime timestamp, String message, String details) {
 		super();
@@ -21,11 +17,9 @@ public class MyErrorDetails {
 		this.details = details;
 	}
 
-
 	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
-
 
 	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
@@ -36,7 +30,6 @@ public class MyErrorDetails {
 		return message;
 	}
 
-
 	public void setMessage(String message) {
 		this.message = message;
 	}
@@ -46,11 +39,8 @@ public class MyErrorDetails {
 		return details;
 	}
 
-
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
-	
 	
 }

@@ -2,13 +2,10 @@ package com.masai.exceptions;
 
 public class LoginException extends Exception{
 
-	public LoginException() {
-		// TODO Auto-generated constructor stub
-	}
+	public LoginException() {}
 	
 	public LoginException(String message) {
 		super(message);
 	}
-	
 	
 }

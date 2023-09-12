@@ -22,20 +22,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer createCustomer(Customer customer)throws CustomerException {
 		
-		
 		Customer existingCustomer= cDao.findByMobileNo(customer.getMobileNo());
-		
-		
 		
 		if(existingCustomer != null) 
 			throw new CustomerException("Customer Already Registered with Mobile number");
-			
-		
-		
-		
 			return cDao.save(customer);
-			
-			
 		}
 
 	@Override
@@ -46,21 +37,13 @@ public class CustomerServiceImpl implements CustomerService {
 		if(loggedInUser == null) {
 			throw new CustomerException("Please provide a valid key to update a customer");
 		}
-		
-		
-	
-		
+
 		if(customer.getCustomerId() == loggedInUser.getUserId()) {
 			//If LoggedInUser id is same as the id of supplied Customer which we want to update
 			return cDao.save(customer);
 		}
-		else
-			throw new CustomerException("Invalid Customer Details, please login first");
+		else throw new CustomerException("Invalid Customer Details, please login first");
 	
 	}
 		
-		
-		
-	}
-
-
+}

@@ -19,24 +19,16 @@ public class CustomerController {
 	@Autowired
 	private CustomerService cService;
 	
-	
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) throws CustomerException {
-		
 		Customer savedCustomer= cService.createCustomer(customer);
-		
-		
 		return new ResponseEntity<Customer>(savedCustomer,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/customers")
 	public  ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer,@RequestParam(required = false) String key ) throws CustomerException {
-		
-		
 		Customer updatedCustomer= cService.updateCustomer(customer, key);
-				
 		return new ResponseEntity<Customer>(updatedCustomer,HttpStatus.OK);
-		
 	}
 	
 
