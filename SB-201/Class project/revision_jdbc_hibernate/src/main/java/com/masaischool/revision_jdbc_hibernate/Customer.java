@@ -15,15 +15,20 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "my_customer")
 public class Customer {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	@Column(name = "customer_name", nullable = false, unique = true, length = 50)
 	private String name;
+
 	@Enumerated(EnumType.STRING)
 	private CustomerType type;
+
 	@Column(name = "credit_limit", precision = 7, scale = 2)
 	private BigDecimal creditLimit;
+
 	private LocalDate joiningDate;
 
 	public Customer() {
@@ -75,12 +80,6 @@ public class Customer {
 	}
 
 	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", type=" + type + ", creditLimit=" + creditLimit
-				+ ", joiningDate=" + joiningDate + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -100,5 +99,10 @@ public class Customer {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", type=" + type + ", creditLimit=" + creditLimit + ", joiningDate=" + joiningDate + "]";
 	}
 }

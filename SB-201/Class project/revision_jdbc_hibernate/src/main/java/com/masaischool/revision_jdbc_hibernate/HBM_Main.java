@@ -13,7 +13,6 @@ import jakarta.persistence.Query;
 
 public class HBM_Main {
 	static EntityManagerFactory emf = null;
-	private static List resultList;
 	
 	static {
 		emf = Persistence.createEntityManagerFactory("rjh");
@@ -23,34 +22,40 @@ public class HBM_Main {
 		EntityManager em = null;
 		EntityTransaction et = null;
 		Customer customer = new Customer(name, type, creditLimit, joiningDate);
+
 		//state of the Customer Entity: transient
 		try {
 			em = emf.createEntityManager();
 			et = em.getTransaction();
 			et.begin();
 			em.persist(customer);
-			//state of the customer Entity: managed 
-			et.commit();
-		}catch(PersistenceException ex) {
+			et.commit();	//state of the customer Entity: managed 
+		}
+		catch(PersistenceException ex) {
 			ex.printStackTrace();
-			//System.out.println(ex.getLocalizedMessage());
 			et.rollback();
-		}finally {
+		}
+		finally {
 			em.close();
 		}
 	}
 	
 	static void showCustomerDetails() {
+
 		try(EntityManager em = emf.createEntityManager();) {
 			Query query = em.createQuery("SELECT name, type, joiningDate FROM Customer WHERE creditLimit > :creditLimit ORDER BY type ASC");
 			query.setParameter("creditLimit", 4999.00);
+			
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
+			
 			query.getSingleResult();
+			
 			for(Object[] custData : list) {
 				System.out.println("Name: " + custData[0] + " Type: " + custData[1] + " Joining date: " + custData[2]);
 			}
-		}catch(IllegalArgumentException ex) {
+		}
+		catch(IllegalArgumentException ex) {
 			ex.printStackTrace();
 		}
 	}

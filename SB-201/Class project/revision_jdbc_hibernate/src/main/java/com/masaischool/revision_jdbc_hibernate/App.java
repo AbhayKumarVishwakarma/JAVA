@@ -39,8 +39,8 @@ public class App {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			connection.setAutoCommit(false);
 
-			PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO book "
-					+ "(title, publisher, price, author) VALUES (?, ?, ?, ?)");
+			// Execute the query to insert the value
+			PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO book " + "(title, publisher, price, author) VALUES (?, ?, ?, ?)");
 			prepareStatement.setString(1, title);
 			prepareStatement.setString(2, publisher);
 			prepareStatement.setDouble(3, price);
@@ -66,7 +66,9 @@ public class App {
 
 			connection.commit();
 			System.out.println("All copies of that book added to the database");
+
 		} catch (SQLException ex) {
+
 			System.out.println(ex.getMessage());
 			try {
 				connection.rollback(savePoint);
@@ -74,12 +76,15 @@ public class App {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		} finally {
+
 			try {
-				connection.close();
+				connection.close();  // closing the connection
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
 
 		sc.close();
