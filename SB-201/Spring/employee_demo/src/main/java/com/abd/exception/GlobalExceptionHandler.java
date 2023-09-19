@@ -2,6 +2,7 @@ package com.abd.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -17,6 +18,17 @@ public class GlobalExceptionHandler {
         err.setDateTime(LocalDateTime.now());
         err.setMessage(ee.getMessage());
         err.setDetails(req.getDescription(false));
+
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<MyErrorDetails> argumentExceptionHandler(MethodArgumentNotValidException ex){
+
+        MyErrorDetails err = new MyErrorDetails();
+        err.setDateTime(LocalDateTime.now());
+        err.setMessage("Validation error!");
+        err.setDetails(ex.getBindingResult().getFieldError().getDefaultMessage());
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }

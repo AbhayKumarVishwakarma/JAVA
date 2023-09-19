@@ -21,7 +21,8 @@ import java.util.Collections;
 public class AppConfig {
     @Bean
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
-        http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        http
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(cors ->{
                     cors.configurationSource(new CorsConfigurationSource() {
 
