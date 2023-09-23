@@ -1,15 +1,17 @@
 package com.demo;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CalculatorTest {
 
-    public CalculatorTest() {
-        System.out.println("Constructor created...");
-    }
+//    public CalculatorTest() {
+//        System.out.println("Constructor created...");
+//    }
 
     @Test
+    @DisplayName("4 / 2 = 2 test case")
     public void testDivide_whenValidValueProvided_shouldReturnExpectedResult(){
 
         //Arrange
