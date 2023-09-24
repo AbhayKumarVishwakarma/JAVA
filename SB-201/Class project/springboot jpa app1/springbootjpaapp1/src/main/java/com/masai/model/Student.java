@@ -11,18 +11,11 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer roll;
-	
 	private String name;
-	
 	private String address;
-
 	private Integer marks;
 
-	
-	
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
+	public Student() {}
 
 	public Student(Integer roll, String name, String address, Integer marks) {
 		super();
@@ -68,10 +61,5 @@ public class Student {
 	public String toString() {
 		return "Student [roll=" + roll + ", name=" + name + ", address=" + address + ", marks=" + marks + "]";
 	}
-	
-	
-	
-	
-
 	
 }
