@@ -13,11 +13,7 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer roll;
-	
 	private String name;
-	
 	private String address;
-
 	private Integer marks;
-	
 }

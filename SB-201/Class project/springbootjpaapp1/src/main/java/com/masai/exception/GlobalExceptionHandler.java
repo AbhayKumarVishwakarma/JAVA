@@ -46,7 +46,6 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 	}
 		
-		
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<MyErrorDetails> myMANVExceptionHandler(MethodArgumentNotValidException me)  {
 	
