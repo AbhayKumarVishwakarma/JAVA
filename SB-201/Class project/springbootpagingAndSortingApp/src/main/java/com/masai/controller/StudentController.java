@@ -21,33 +21,22 @@ public class StudentController {
 	@Autowired
 	private StudentService sService;
 	
-	
+
 	@PostMapping("/students")
 	public ResponseEntity<Student> addStudentHandler(@RequestBody Student student){
-		
 		Student savedStudent= sService.addStudent(student);
-		
 		return new ResponseEntity<>(savedStudent,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/students/{pageNumber}")
 	public List<Student> getStudentPagedWiseHandler(@PathVariable("pageNumber") Integer pageNumber, @RequestParam("numberOfRecords") Integer numberOfRecords){
-	
 		return sService.getAllStudentsPageWise(pageNumber, numberOfRecords);
-	
 	}
 
-	
+
 	@GetMapping("/getSortedStudents/{field}")
 	public List<Student> getSortedStudentListHandler(@PathVariable("field") String field, @RequestParam("direction") String direction){
-		
 		return sService.getSortedStudentListWithField(field, direction);
-		
 	}
-	
-	
-	
-	
-	
 	
 }

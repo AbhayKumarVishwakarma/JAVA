@@ -17,15 +17,12 @@ public class StudentServiceImpl implements StudentService{
 	@Autowired
 	private StudentRepository sRepo;
 	
-	
 	@Override
 	public List<Student> getAllStudentsPageWise(Integer pageNumber, Integer numberOfRecords) {
-	
 		Pageable p = PageRequest.of(pageNumber-1, numberOfRecords);
 		
 		//using method of PagingAndSortingRepository
 		Page<Student> page= sRepo.findAll(p);
-		
 		
 		//using JPQL 
 		//Page<Student> page= sRepo.getAllStudents(p);
@@ -34,12 +31,8 @@ public class StudentServiceImpl implements StudentService{
 //		Page<Student> page= sRepo.findByAddress("delhi",p);
 //		List<Student> students= page.getContent();
 		
-		
 		List<Student> students= page.getContent();
-		
-		
 		return students;
-		
 	}
 
 
@@ -51,10 +44,7 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public List<Student> getSortedStudentListWithField(String field, String direction) {
-		
-		return sRepo.findAll(direction.equals("asc")? Sort.by(field).ascending() : Sort.by(field).descending());
-		
-		
+		return sRepo.findAll(direction.equals("asc") ? Sort.by(field).ascending() : Sort.by(field).descending());
 	}
 
 }
