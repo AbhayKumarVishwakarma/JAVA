@@ -20,8 +20,7 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService empService;
-	
-	
+	 
 	/*
 	
 	POST: http://localhost:8080/employees/2
@@ -36,34 +35,24 @@ public class EmployeeController {
                 "state": "delhi",
                 "pincode": "997878"
             }
- }
-	
+ } 
 	*/
+
 	@PostMapping("/employees/{deptId}")
 	public ResponseEntity<Employee> registerEmployeeInDepartment(@PathVariable Integer deptId, @RequestBody Employee employee){
-		
-		
 		Employee savedEmp= empService.addEmployeeInDepartment(deptId, employee);
-		
-		return new ResponseEntity<>(savedEmp, HttpStatus.CREATED);
-		
+		return new ResponseEntity<>(savedEmp, HttpStatus.CREATED); 
 	}
-	
-	
+	 
 	@GetMapping("/employees")
 	public ResponseEntity<List<Employee>> getAllEmpByDeptIdHandler(@RequestParam("deptId") Integer deptId){
-		
 		List<Employee> emps= empService.getAllEmployeesByDepartmentId(deptId);
-		
 		return new ResponseEntity<>(emps,HttpStatus.OK);
-		
 	}
 	
 	@GetMapping("/departments/{deptId}/employees")
 	public ResponseEntity<List<String>> getCustomEmpHandler(@PathVariable("deptId") Integer deptId){
-		
 		List<String> result= empService.getEmployeeCustomDetails(deptId);
-		
 		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	

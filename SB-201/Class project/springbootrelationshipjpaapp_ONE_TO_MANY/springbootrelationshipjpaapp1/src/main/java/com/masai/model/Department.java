@@ -30,5 +30,4 @@ public class Department {
 	@OneToMany(mappedBy = "dept", cascade = CascadeType.ALL)
 	private List<Employee> employees= new ArrayList<>();
 	
-	
 }

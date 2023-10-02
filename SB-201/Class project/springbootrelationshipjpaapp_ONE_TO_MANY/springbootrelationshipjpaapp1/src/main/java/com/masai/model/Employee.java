@@ -33,12 +33,4 @@ public class Employee {
 	@ManyToOne
 	private Department dept;
 	
-	
-	
-	
-	
-	
-	
-	
-
 }

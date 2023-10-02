@@ -20,16 +20,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Autowired
 	private EmployeeRepository empRepo;
 	
-	
-	
 	@Override
 	public Employee addEmployeeInDepartment(Integer deptId, Employee employee) {
-	
 		Optional<Department> opt= deptRepo.findById(deptId);
-		
-		
 		if(opt.isPresent()) {
-			
 			Department dept= opt.get();
 			
 			//associating emp with dept
@@ -38,22 +32,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 			//associating dept with emp
 			
 			dept.getEmployees().add(employee);
-			
-			
 			return empRepo.save(employee);
-			
-			
-			
-		}else
-			throw new IllegalArgumentException("Invalid Department Details");
-		
-		
-		
-		
+		}
+		else throw new IllegalArgumentException("Invalid Department Details");
 		
 	}
-
-
 
 	@Override
 	public List<Employee> getAllEmployeesByDepartmentId(Integer deptId) {
@@ -70,26 +53,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 //		throw new IllegalArgumentException("Invalid Dept Id");
 		
 		return deptRepo.getAllEmployesByDeptId(deptId);
-		
-		
-		
-		
-		
 	}
 
 
 
 	@Override
 	public List<String> getEmployeeCustomDetails(Integer deptId) {
-		
 		return deptRepo.getEmpCustomDetails(deptId);
-		
-		
 	}
 
-	
-	
-	
-	
-	
 }

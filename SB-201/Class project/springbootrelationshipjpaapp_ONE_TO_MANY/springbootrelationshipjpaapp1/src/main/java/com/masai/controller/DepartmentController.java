@@ -55,32 +55,15 @@ public class DepartmentController {
 
     ]
 }
-	
-	
 	*/
-	
-	
-	
+	 
 	@PostMapping("/departments")
 	public ResponseEntity<Department> addNewDepartmentHandler(@RequestBody Department department){
-		
-		
 		List<Employee> employees= department.getEmployees();
 		
 		//linking/associating all the employee with their deprtment
-		for(Employee emp:employees) {
-			emp.setDept(department);
-		}
-		
-		
-		Department savedDept= departmentService.addNewDepartment(department);
-		
-		
+		for(Employee emp:employees) emp.setDept(department); 
+		Department savedDept= departmentService.addNewDepartment(department); 
 		return new ResponseEntity<>(savedDept, HttpStatus.CREATED);
-	}
-	
-	
-	
-	
-	
+	} 
 }
