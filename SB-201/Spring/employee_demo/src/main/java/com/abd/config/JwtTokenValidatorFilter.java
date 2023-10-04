@@ -22,7 +22,6 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String jwt = request.getHeader(SecurityConstants.JWT_HEADER);
-        System.out.println(jwt);
         if(jwt != null){
             try {
                 jwt = jwt.substring(7);
@@ -43,4 +42,5 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return request.getServletPath().equals("/employee/signIn");
     }
+
 }

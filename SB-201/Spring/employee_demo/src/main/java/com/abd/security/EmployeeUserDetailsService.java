@@ -24,7 +24,9 @@ public class EmployeeUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         Optional<Employee> opt = employeeRepository.findByEmail(username);
+
         if(opt.isPresent()){
             Employee emp = opt.get();
             List<GrantedAuthority> authorityList = new ArrayList<>();
@@ -32,6 +34,7 @@ public class EmployeeUserDetailsService implements UserDetailsService {
             authorityList.add(sga);
             return new User(emp.getEmail(), emp.getPassword(), authorityList);
         }
-        else throw new BadCredentialsException("User not found with username: " + username);
+        else
+            throw new BadCredentialsException("User not found with username: " + username);
     }
 }

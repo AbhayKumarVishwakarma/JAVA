@@ -29,8 +29,7 @@ public class AppConfig {
                         @Override
                         public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 
-                            CorsConfiguration cfg= new CorsConfiguration();
-
+                            CorsConfiguration cfg = new CorsConfiguration();
                             cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
                             cfg.setAllowedMethods(Collections.singletonList("*"));
                             cfg.setAllowCredentials(true);

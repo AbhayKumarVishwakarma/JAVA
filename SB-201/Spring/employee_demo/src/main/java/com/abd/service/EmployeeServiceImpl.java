@@ -37,7 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee viewEmployee(Integer id) throws EmployeeException {
-        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeException("Not found any employee with id: " + id));
+        Employee emp = employeeRepository.findById(id).orElseThrow(() -> new EmployeeException("Not found any employee with id: " + id));
+        return emp;
     }
 
     @Override

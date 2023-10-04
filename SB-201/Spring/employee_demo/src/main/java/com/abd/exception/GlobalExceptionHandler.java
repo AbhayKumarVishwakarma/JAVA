@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(EmployeeException.class)
-    public ResponseEntity<MyErrorDetails> employeeExceptionHandler(EmployeeException ee, WebRequest req){
+    public ResponseEntity<MyErrorDetails> employeeExceptionHandler(EmployeeException ex, WebRequest req){
 
         MyErrorDetails err = new MyErrorDetails();
         err.setDateTime(LocalDateTime.now());
-        err.setMessage(ee.getMessage());
+        err.setMessage(ex.getMessage());
         err.setDetails(req.getDescription(false));
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
@@ -43,4 +44,5 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
+
 }

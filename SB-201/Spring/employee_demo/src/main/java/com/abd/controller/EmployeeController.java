@@ -22,7 +22,7 @@ public class EmployeeController {
 
     @GetMapping("/welcome")
     public String welcomeHandler() {
-        return "Welcome to Rest API with JWT Authentication application...";
+        return "Welcome to Rest API with JWT Authentication application.";
     }
 
     @PostMapping("/employee/register")
@@ -35,7 +35,7 @@ public class EmployeeController {
 
     @GetMapping("/employee/signIn")
     public ResponseEntity<String> loggedInEmployeeHandler(Authentication auth){
-        System.out.println(auth);
+//        System.out.println(auth);
         Employee emp = employeeService.viewEmployeeByEmail(auth.getName());
         return new ResponseEntity<>(emp.getName() + " logged In Successfully!", HttpStatus.OK);
     }
