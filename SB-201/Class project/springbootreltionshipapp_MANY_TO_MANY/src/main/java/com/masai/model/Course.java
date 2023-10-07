@@ -17,16 +17,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data  // @Getter and @Setter
+@Data 
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Course {
 
-
-
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer courseId;
@@ -34,9 +30,6 @@ public class Course {
 	private Integer fee;
 	private String desc;
 	
-	
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "courses")
 	private Set<Student> students= new HashSet<>();
-
-		
 }

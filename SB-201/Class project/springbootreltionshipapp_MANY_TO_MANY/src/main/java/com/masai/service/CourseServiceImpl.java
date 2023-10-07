@@ -15,25 +15,11 @@ public class CourseServiceImpl implements CourseService{
 	@Autowired
 	private CourseDao cDao;
 	
-	
 	@Override
 	public Course registerNewCourse(Course course) {
-	
-		Set<Student> students= course.getStudents();
-		
-		for(Student student:students) {
-			
-			//associating each student with course
-			student.getCourses().add(course);
-			
-		}
-		
-		
-		
+		Set<Student> students = course.getStudents();
+		for(Student student: students) student.getCourses().add(course); 
 		return  cDao.save(course);
-		
-		
-		
 	}
 
 }

@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,8 +25,6 @@ public class Student {
 	
 	@Embedded
 	private Address addr;
-	
-	//12:15
 	
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)

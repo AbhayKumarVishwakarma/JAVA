@@ -17,13 +17,10 @@ public class CourseController {
 	private CourseService cService;
 	
 	/*
-	
 	{
-
 		"courseName": "Java",
 		"fee": 8500,
 		"students": [
-
 		    {
 		        "name": "Ram",
 		        "marks": 850,
@@ -44,24 +41,13 @@ public class CourseController {
 		    }
 
 		]
-
-
-		}
-	
-	
+	}
 	*/
 	
 	
 	@PostMapping("/courses")
 	public ResponseEntity<Course> saveCourseHandler(@RequestBody Course course){
-		
-		Course savedCourse= cService.registerNewCourse(course);
-		
-		
-		return new ResponseEntity<Course>(savedCourse,HttpStatus.CREATED);
+		Course savedCourse = cService.registerNewCourse(course);
+		return new ResponseEntity<Course>(savedCourse, HttpStatus.CREATED);
 	}
-	
-	
-	
-	
 }

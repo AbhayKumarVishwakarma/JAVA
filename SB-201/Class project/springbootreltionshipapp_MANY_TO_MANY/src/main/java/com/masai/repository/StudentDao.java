@@ -7,5 +7,4 @@ import com.masai.model.Student;
 
 @Repository
 public interface StudentDao extends JpaRepository<Student, Integer>{
-
 }

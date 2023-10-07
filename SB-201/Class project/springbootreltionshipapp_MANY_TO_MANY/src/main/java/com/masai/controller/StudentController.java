@@ -23,30 +23,14 @@ public class StudentController {
 	
 	@PostMapping("/students/{cname}")
 	public ResponseEntity<Student> registerStudentInCourseHandler(@PathVariable("cname") String cname, @RequestBody Student student) throws CourseException{
-		
-		
-		
-		Student enrolledStudent= sService.registerStudentInCourse(cname, student);
-		
-		
+		Student enrolledStudent = sService.registerStudentInCourse(cname, student);
 		return new ResponseEntity<Student>(enrolledStudent, HttpStatus.CREATED);
-		
-		
 	}
 	
 	@GetMapping("/students/{cname}")
 	public ResponseEntity<List<Student>> getStudentsByCnameHandler(@PathVariable("cname") String cname) throws CourseException{
-		
-		List<Student> students= sService.findStudentsByCname(cname);;
-		
-		return new ResponseEntity<List<Student>>(students,HttpStatus.OK);
-		
+		List<Student> students = sService.findStudentsByCname(cname);
+		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
 	
 }
