@@ -14,7 +14,7 @@ public class WelcomeController {
      */
     @GetMapping("/welcome")
     public ResponseEntity<String> welcome(){
-        return new ResponseEntity<String>("Welcome to Masai App without security",HttpStatus.ACCEPTED);
+        return new ResponseEntity<String>("Welcome to Masai App without security", HttpStatus.ACCEPTED);
     }
 
     /**
@@ -23,7 +23,7 @@ public class WelcomeController {
      */
     @GetMapping("/welcomeP")
     public ResponseEntity<String> welcomeP(){
-        return new ResponseEntity<String>("Welcome to Masai App with Security",HttpStatus.ACCEPTED);
+        return new ResponseEntity<String>("Welcome to Masai App with Security", HttpStatus.ACCEPTED);
     }
 
     /**
@@ -32,6 +32,6 @@ public class WelcomeController {
      */
     @GetMapping("/admin")
     public ResponseEntity<String> admin(){
-        return new ResponseEntity<>("Welcome to Masai app for admin",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Welcome to Masai app for admin", HttpStatus.ACCEPTED);
     }
 }

@@ -13,8 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ProjectSecurityConfig {
-
-
+    
     @Bean
     public SecurityFilterChain masaiSecurityFilter(HttpSecurity http) throws Exception {
 
