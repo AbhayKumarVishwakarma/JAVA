@@ -50,7 +50,6 @@ public class CustomerController {
 	
 	// add another Customer with only one authority "VIEWCUSTOMER"
 	
-	
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> saveCustomerHandler(@RequestBody Customer customer){
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));

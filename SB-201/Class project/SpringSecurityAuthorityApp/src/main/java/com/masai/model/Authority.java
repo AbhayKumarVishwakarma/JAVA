@@ -21,5 +21,4 @@ public class Authority {
 	@JsonIgnore
 	@ManyToOne
 	private Customer customer;
-	
 }

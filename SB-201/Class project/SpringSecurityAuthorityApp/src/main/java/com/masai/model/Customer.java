@@ -31,10 +31,6 @@ public class Customer {
 	private String password;
 	private String address;
 	
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer",fetch = FetchType.EAGER)
 	private List<Authority> authorities = new ArrayList<>();
-	
-	//getters and setters
-
 }

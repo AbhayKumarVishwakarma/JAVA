@@ -19,10 +19,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer registerCustomer(Customer customer) throws CustomerException {
 		List<Authority> authorities = customer.getAuthorities();
-
-		for(Authority authority : authorities) {  //associating each authority with customer
-			authority.setCustomer(customer);
-		}
+		for(Authority authority : authorities) authority.setCustomer(customer); 
 		return customerRepository.save(customer);
 	}
 
