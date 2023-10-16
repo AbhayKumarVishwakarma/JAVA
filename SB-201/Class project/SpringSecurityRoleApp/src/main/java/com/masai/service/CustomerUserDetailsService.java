@@ -32,8 +32,8 @@ public class CustomerUserDetailsService implements UserDetailsService{
 			SimpleGrantedAuthority sga = new SimpleGrantedAuthority(customer.getRole());
 			authorities.add(sga);
 			return new User(customer.getEmail(), customer.getPassword(), authorities);
-		}else
-			throw new BadCredentialsException("User Details not found any user with this username: "+username);
+		}
+		else throw new BadCredentialsException("User Details not found any user with this username: "+ username);
 	}
 
 }

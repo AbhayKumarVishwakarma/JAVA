@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,15 +35,14 @@ public class CustomerController {
 	}
 	
 	/*
-	  {
+	{
         "name": "ram",
         "email": "ram@gmail.com",
         "password": "1234",
         "address": "delhi",
         "role": "admin"
     }
-	 */
-	// add another Customer with only the role "user"
+	*/
 
 	/**
 	 * any user can access and create an account
@@ -78,7 +76,6 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getAllCustomerHandler(){
 		List<Customer> customers = customerService.getAllCustomerDetails();
 		return new ResponseEntity<>(customers,HttpStatus.ACCEPTED);
-		
 	}
 
 	/**
@@ -89,7 +86,7 @@ public class CustomerController {
 	@GetMapping("/signIn")
 	public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
 		System.out.println(auth); // this Authentication object having Principle object details
-		 Customer customer = customerService.getCustomerDetailsByEmail(auth.getName());
-		 return new ResponseEntity<>(customer.getName()+" logged In Successfully", HttpStatus.ACCEPTED);
+		Customer customer = customerService.getCustomerDetailsByEmail(auth.getName());
+		return new ResponseEntity<>(customer.getName()+" logged In Successfully", HttpStatus.ACCEPTED);
 	}
 }
