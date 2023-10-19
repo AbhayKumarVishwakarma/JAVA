@@ -20,10 +20,11 @@ public class Customer {
 	
 	@Column(unique = true)
 	private String email;
+
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
+	
 	private String address;
 	
 	private String role;
-
 }
