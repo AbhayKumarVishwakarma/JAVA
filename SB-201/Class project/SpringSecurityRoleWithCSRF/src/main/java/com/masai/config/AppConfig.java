@@ -21,7 +21,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 public class AppConfig {
-	
 
 	@Bean
 	public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
@@ -29,13 +28,10 @@ public class AppConfig {
 		CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
 		
 		http.cors(cors -> {
-			
 			cors.configurationSource(new CorsConfigurationSource() {
-				
 				@Override
 				public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 					CorsConfiguration cfg = new CorsConfiguration();
-					
 					cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
 					cfg.setAllowedMethods(Collections.singletonList("*"));
 					cfg.setAllowCredentials(true);
@@ -46,22 +42,20 @@ public class AppConfig {
 			});
 
 		}).authorizeHttpRequests(auth ->{
-			
 			auth
-			.requestMatchers(HttpMethod.POST,"/customers").permitAll()
-			.requestMatchers(HttpMethod.GET, "/customers","/hello").hasRole("ADMIN")
-			.requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN","USER")
-			.anyRequest().authenticated();
+				.requestMatchers(HttpMethod.POST,"/customers").permitAll()
+				.requestMatchers(HttpMethod.GET, "/customers","/hello").hasRole("ADMIN")
+				.requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN","USER")
+				.anyRequest().authenticated();
 			
 		})
 		.csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/notice","/contact","/customers")
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 		.addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 		.formLogin(Customizer.withDefaults())
 		.httpBasic(Customizer.withDefaults());
 		
 		return http.build();
-
 	}
 
 	@Bean
@@ -69,5 +63,4 @@ public class AppConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-
 }
