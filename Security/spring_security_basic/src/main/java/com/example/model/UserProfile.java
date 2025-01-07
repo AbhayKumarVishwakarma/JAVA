@@ -5,11 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class userProfile implements UserDetails {
+public class UserProfile implements UserDetails {
 
     private User user;
 
-    public userProfile(User user) {
+    public UserProfile(User user) {
         this.user = user;
     }
 

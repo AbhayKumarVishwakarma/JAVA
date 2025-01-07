@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.model.userProfile;
+import com.example.model.UserProfile;
 import com.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.model.User;
@@ -21,6 +21,6 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new userProfile(user);
+        return new UserProfile(user);
     }
 }
